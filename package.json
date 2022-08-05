@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fluencelabs/fluence": "^0.23.3",
+    "@fluencelabs/fluence-network-environment": "^1.0.13",
+    "@types/webaudioapi": "^0.0.27",
     "cra-template-typescript": "1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
