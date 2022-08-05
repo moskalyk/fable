@@ -100,17 +100,93 @@ function stop() {
 // breakpoint
 
 
+const memory = processData('text')
+
+// [
+//   ['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',], // headers / hedenu
+//   [],
+//   [],
+//   [],
+// ]
+
+function processData(allText) {
+    var record_num = 5;  // or however many elements there are in each row
+    var allTextLines = allText.split(/\r\n|\n/);
+    var entries = allTextLines[0].split(',');
+    var lines = [];
+
+    var headings = entries.splice(0,record_num);
+    while (entries.length>0) {
+        var tarr = [];
+        for (var j=0; j<record_num; j++) {
+            tarr.push(headings[j]+":"+entries.shift());
+        }
+        lines.push(tarr);
+    }
+    // alert(lines);
+}
+
+function detectspecialkeys(e){
+    var evtobj= e
+    if (evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)
+        alert("you pressed one of the 'Alt', 'Ctrl', or 'Shift' keys")
+}
+document.onkeypress=detectspecialkeys
+
+// Listen to keyboard. 
+    window.onkeypress = listenToTheKey;
+    // window.onkeyup = listenToKeyUp;
+
+    /*
+        Gets the key pressed and send a request to the associated function
+        @input key
+    */
+    function listenToTheKey(e)
+    {
+      console.log(e)
+        if (e.ctrlKey){ // bgp
+          // console.log('howdy')
+          setNoun(e.target.value)
+          (document.getElementById('respect') as HTMLInputElement).value = e.key
+        }
+    }
 
 
 
 main();
 // dioramma // 4
 function Fable() {
+  const [noun, setNoun] = React.useState('¢')
   // embed md mina crystal key
   const crystal = (rad) => {
     switch(rad){
       case '¢':
         return 1;
+      case '♦':
+        return <>noice noice noice</>
+      case '~':
+        return <div className="generator-ad-wrapper">
+          <div id="generator" className="generator">
+              <form>
+                  <div className="binaural-freq-wrapper">
+                      <input type="text" id="freq2" name="freq2" value="500" className="input--frequency"/>
+                      <p id="freq2label">🦻<br/>Frequency (HZ)</p>
+                  </div>
+                  <div className="binaural-freq-wrapper">
+                      <input type="text" id="freq" name="freq" value="503" className="input--frequency"/>
+                      <p>👂<br/>Frequency (HZ)</p>
+                  </div>
+                  <div className="generator-buttons">
+                      <button type="button" onClick={() => start()} className="beginTuning generatorButton">Play</button>
+                      <button type="button" onClick={() => stop()} className="stopTuning generatorButton">Stop</button>
+                  </div>
+                  <script src="js/binaural.js"></script>
+              </form>
+              <p className="clear"></p>
+          </div>
+        </div>
+      case '☮':
+        return <>p</>
       default:
         return 2;
     }
@@ -159,7 +235,11 @@ function Fable() {
 
       {/**/}
       {/**/}
-      <p>{crystal('yes')}</p>
+      <p>{crystal(noun)}</p>
+ {/*     <input className="respect" onChange={(e) => {
+        // console.log(e.target.value)
+        setNoun(e.target.value)
+      }}></input>*/}
       {/**/}
       {/**/}
       {/**/}
