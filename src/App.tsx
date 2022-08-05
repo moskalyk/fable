@@ -126,6 +126,12 @@ function processData(allText) {
     // alert(lines);
 }
 
+
+
+
+main();
+// dioramma // 4
+function Fable() {
 function detectspecialkeys(e){
     var evtobj= e
     if (evtobj.altKey || evtobj.ctrlKey || evtobj.shiftKey)
@@ -150,12 +156,6 @@ document.onkeypress=detectspecialkeys
           (document.getElementById('respect') as HTMLInputElement).value = e.key
         }
     }
-
-
-
-main();
-// dioramma // 4
-function Fable() {
   const [noun, setNoun] = React.useState('¢')
   // embed md mina crystal key
   const crystal = (rad) => {
